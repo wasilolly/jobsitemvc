@@ -7,6 +7,6 @@ define('DB_NAME', 'jobsite');
 
 
 define('APPROOT', dirname(__FILE__,2));
-define('URLROOT', 'http://localhost/jobsitemvc');
+define('URLROOT', 'http://localhost/jobsite');
 define('SITENAME', 'Jobsite');
 

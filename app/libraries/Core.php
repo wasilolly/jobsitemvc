@@ -1,7 +1,7 @@
 <?php 
 
 class Core{
-    protected $currentController = 'pages';
+    protected $currentController = 'JobsController';
     protected $currentMethod = 'index';
     protected $params = [];
 
@@ -9,11 +9,14 @@ class Core{
     {
         $url = $this->getUrl();
         //Look in the controller file for the url param namesake
-        if(file_exists('../app/controllers/'.ucwords($url[0]).'Controllers.php')){
-            $this->currentController = ucwords($url[0]);
-            unset($url[0]);
+        if (isset($url[0])){
+            if(file_exists('../app/controllers/'.ucwords($url[0]).'Controller.php')){
+                $this->currentController = ucwords($url[0]).'Controller';
+                unset($url[0]);
+            }
         }
-        require_once '../app/controllers/'.$this->currentController.'Controllers.php';
+        
+        require_once '../app/controllers/'.$this->currentController.'.php';
         $this->currentController = new $this->currentController;
 
         //Look for method in controller class

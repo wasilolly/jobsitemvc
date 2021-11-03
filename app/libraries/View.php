@@ -1,29 +1,13 @@
-<?php
+<?php 
 
-class Controller
-{
-    public $layout = 'main';
-
-    public function model($model)
-    {
-        require_once '../app/models/' . $model . '.php';
-        return new $model;
-    }
-
-    public function view($view, $data = [])
-    {
-        if (file_exists('../app/views/' . $view . '.php')) {
-            echo $this->render($view, $data);
-             
-        } else {
-            die('View does not exist');
-        }
-    }
+class View{
 
     public function render($view, $data)
     {
-        return str_replace('{{content}}', $this->getViewContents($view, $data), $this->getLayoutContents());
+        $viewContents = $this->getViewContents($view, $data);
+        return str_replace('{{content}}',  $this->getLayoutContents(), $viewContents);
     }
+
     protected function getLayoutContents(){
         ob_start();
         require_once '../app/views/layouts/' . $this->layout . '.php';
@@ -34,13 +18,16 @@ class Controller
 
     protected function getViewContents($view, $data){
         ob_start();
+
         require_once '../app/views/' . $view . '.php';
+
         foreach ($data as $key => $value) {
             $$key = $value;
         }
+
         $viewContents = ob_get_contents();
-        ob_end_clean();      
+        ob_end_clean();
+        
         return $viewContents;
     }
-
 }

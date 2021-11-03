@@ -2,22 +2,31 @@
 
 class JobsController extends Controller{
 
+    public $job;
+    
     public function __construct()
     {
-        $this->jobModel = $this->model('Job');
+        $this->job = $this->model('Job');
     }
 
     public function index(){
-        //$users = $this->userModel->getUsers();
+        $categories = $this->job->getCategories();
+        $jobs = $this->job->getAllJobs();
         $data = [
-            'title' => 'Job page',
-            
+            'title' => 'Job Index page',
+            'categories' => $categories,    
+            'jobs' => $jobs   
         ];
         $this->view('jobs/index', $data);
     }
 
     public function create(){
-        
+        $categories = $this->job->getCategories();
+        $data = [
+            'title' => 'Job Create page',
+            'categories' => $categories
+        ];
+        $this->view('jobs/create', $data);
         
     }
 
