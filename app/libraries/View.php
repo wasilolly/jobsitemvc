@@ -4,13 +4,14 @@ class View{
 
     public function render($view, $data)
     {
+        $layoutContents = $this->getLayoutContents();
         $viewContents = $this->getViewContents($view, $data);
-        return str_replace('{{content}}',  $this->getLayoutContents(), $viewContents);
+        return str_replace('{{content}}', $viewContents, $layoutContents);
     }
 
     protected function getLayoutContents(){
         ob_start();
-        require_once '../app/views/layouts/' . $this->layout . '.php';
+        require_once '../app/views/layouts/main.php';
         $layoutContents = ob_get_contents();
         ob_end_clean();
         return $layoutContents;

@@ -8,14 +8,17 @@ class Core{
     public function __construct()
     {
         $url = $this->getUrl();
+        var_dump($url);
         //Look in the controller file for the url param namesake
         if (isset($url[0])){
             if(file_exists('../app/controllers/'.ucwords($url[0]).'Controller.php')){
                 $this->currentController = ucwords($url[0]).'Controller';
                 unset($url[0]);
+
             }
         }
-        
+        var_dump($url);
+
         require_once '../app/controllers/'.$this->currentController.'.php';
         $this->currentController = new $this->currentController;
 
@@ -28,7 +31,7 @@ class Core{
         }
 
         $this->params = $url ? array_values($url) : [];
-        call_user_func_array([$this->currentController, $this->currentMethod],$this->params,);
+        call_user_func([$this->currentController, $this->currentMethod]);
 
     }
 

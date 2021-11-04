@@ -2,7 +2,7 @@
 <div class="bg-light rounded-3">
     <div class="container-fluid py-5">
         <h2 class="display-5">Job Search</h2>
-        <form method="GET" action="index.php">
+        <form method="GET" action="/jobsite/jobs/index">
             <select name="category" class="form-control" id="form-group">
                 <option value="0">Choose a Category</option>
                 <?php foreach ($data['categories'] as $category) : ?>
@@ -22,7 +22,7 @@
             <div class="col d-flex align-items-start">
                 <div>
                     <h2>
-                        <a href="job.php?id=<?php echo $job->id; ?>">
+                        <a href="job?id=<?php echo $job->id; ?>">
                              <?php echo ucfirst($job->title);   ?>
                         </a>                     
                     </h2>

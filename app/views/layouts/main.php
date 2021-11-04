@@ -27,15 +27,16 @@
 <main>
     <div class="container py-4">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/jobsite/index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <a href="/jobsite/jobs/index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <span class="fs-4"><?php echo SITENAME; ?></span>
             </a>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/jobsite/jobs/index" class="nav-link" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/jobsite/jobs/create" class="nav-link">New Listing</a></li>
+                <li class="nav-item"><a href="index" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="create" class="nav-link">New Listing</a></li>
             </ul>
         </header>
+        <?php displayMessage(); ?>
 
                  
         {{content}}

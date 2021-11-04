@@ -44,25 +44,24 @@ class Job{
 
         $row = $this->db->single();
         return $row;
-
     }
 
     public function getJob($jobId)
     {
         $this->db->query("SELECT * FROM  jobs WHERE id = :jobId");
-        $this->db->bind(':jobId',$jobId);
+        $this->db->bind(':jobId', $jobId);
 
         $row = $this->db->single();
         
         return $row;
     }
 
-    public function create(array $data)
+    public function insert(array $data)
     {
        $this->db->query("INSERT INTO jobs (category_id, title, company, 
-                    description, location, salary, phone, email)
+                    description, location, salary, contact, email)
                     VALUES (:category_id, :title, :company, :description, :location,
-                    :salary, :phone, :email)");
+                    :salary, :contact, :email)");
         $this->db->bind(':category_id', $data['category_id']);
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':company', $data['company']);
@@ -70,7 +69,7 @@ class Job{
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':salary', $data['salary']);
         $this->db->bind(':description', $data['description']);
-        $this->db->bind(':phone', $data['phone']);
+        $this->db->bind(':contact', $data['contact']);
 
         if($this->db->execute())
         {
@@ -101,7 +100,7 @@ class Job{
                     description = :description, 
                     location = :location, 
                     salary = :salary, 
-                    phone = :phone, 
+                    contact = :contact, 
                     email = :email
                     WHERE id = $jobId");
 
@@ -112,7 +111,7 @@ class Job{
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':salary', $data['salary']);
         $this->db->bind('description', $data['description']);
-        $this->db->bind(':phone', $data['phone']);
+        $this->db->bind(':contact', $data['contact']);
 
         if($this->db->execute())
         {
