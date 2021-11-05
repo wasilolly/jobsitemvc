@@ -14,7 +14,6 @@ class Core{
             if(file_exists('../app/controllers/'.ucwords($url[0]).'Controller.php')){
                 $this->currentController = ucwords($url[0]).'Controller';
                 unset($url[0]);
-
             }
         }
         var_dump($url);
@@ -29,10 +28,8 @@ class Core{
                 unset($url[1]);
             }
         }
-
         $this->params = $url ? array_values($url) : [];
         call_user_func([$this->currentController, $this->currentMethod]);
-
     }
 
     public function getUrl()

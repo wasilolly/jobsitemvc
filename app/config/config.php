@@ -10,3 +10,11 @@ define('APPROOT', dirname(__FILE__,2));
 define('URLROOT', 'http://localhost/jobsite');
 define('SITENAME', 'Jobsite');
 
+if(isset($_SESSION['user'])){
+    define('AUTH', true);
+    define('GUEST', false);
+}else{
+    define('AUTH', false);
+    define('GUEST', true);
+}
+

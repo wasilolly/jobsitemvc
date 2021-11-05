@@ -6,7 +6,8 @@ class JobsController extends Controller{
     
     public function __construct()
     {
-        $this->job = $this->model('Job');
+        $this->model('Job');
+        $this->job = new Job;
     }
 
     public function index(){

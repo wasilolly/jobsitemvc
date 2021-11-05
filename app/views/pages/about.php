@@ -1,1 +1,0 @@
-This is the about page from Page view
