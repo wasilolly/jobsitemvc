@@ -40,12 +40,13 @@ class JobsController extends Controller{
     public function store(){
        $create = $this->job->insert($this->getData());
         if($create){
-            redirect('index','New Job Listed!','success');
+            redirect(URLROOT,'New Job Listed!','success');
         }else{
-            redirect('index','Something went wrong!','error');
+            redirect(URLROOT.'/jobs/create','Something went wrong!','error');
         }  
     }
-
+    
+    //show a single job
     public function job(){
         if(isset($_GET['id'])){
             $singleJob = $this->job->getJob($_GET['id']);            
@@ -75,7 +76,7 @@ class JobsController extends Controller{
         $jobId = $_GET['id'];
         $this->job->update($jobId,$this->getData());
         $_SESSION['job'] = $this->job->getJob($_GET['id']);
-        redirect('job','Job Updated!','success');
+        redirect(URLROOT.'/jobs/job','Job Updated!','success');
     }
 
     public function destroy(){
@@ -83,14 +84,28 @@ class JobsController extends Controller{
             $delJob = $this->job->delete($_POST['del_id']);
         }
         if($delJob){
-            redirect('index','Job Deleted!','success');
+            redirect(URLROOT,'Job Deleted!','success');
         }else{
-            redirect('index','Something went wrong!','error');
+            redirect(URLROOT,'Something went wrong!','error');
         }  
+    }
 
+    public function apply(){
+        $jobId = $_POST['id'];
+        $target_dir = "../public/uploads/";
+        $target_file = $target_dir.basename($_FILES["cv"]["name"]);
+        move_uploaded_file($_FILES['cv']['tmp_name'], $target_file);
+        $data = $this->getData();
+        $data['cv_path'] = $target_file;
+        if($this->job->apply($jobId,$data)){
+            redirect(URLROOT,'Applied successfully, we will be in touch!','success');
+        }else{
+            redirect(URLROOT,'Your application was not sent, please try again!','error');  
+        }
     }
 
     public function getData(){
+
         if (isset($_POST['submit'])) {
             $data = array();
             $data['title'] = $_POST['title'];
@@ -101,6 +116,12 @@ class JobsController extends Controller{
             $data['company'] = $_POST['company'];
             $data['category_id'] = $_POST['category'];
             $data['location'] = $_POST['location'];
+        }else if(isset($_POST['apply'])){
+            $data = array();
+            $data['name'] = $_POST['name'];
+            $data['email'] = $_POST['email'];
+        }else{
+            return null;
         }
         return $data;
     }

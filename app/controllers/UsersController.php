@@ -18,7 +18,7 @@ class UsersController extends Controller
             if ($createUser) {
                 redirect(URLROOT, 'Registered', 'success');
             } else {
-                redirect('register', 'Something went wrong, please try again', 'error');
+                redirect(URLROOT.'/users/register', 'Something went wrong, please try again', 'error');
             }
         } else {
             $this->view('auth/register');
@@ -33,7 +33,7 @@ class UsersController extends Controller
                 $_SESSION['user'] = $createUser;                
                 redirect(URLROOT, 'Logged in', 'success');
             } else {
-                redirect('login', 'Your credentials not matched, please try again!', 'error');
+                redirect(URLROOT.'/users/login', 'Your credentials not matched, please try again!', 'error');
             }
         } else {
             $this->view('auth/login');
