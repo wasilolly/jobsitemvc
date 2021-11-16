@@ -16,9 +16,14 @@ class UsersController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $createUser = $this->userModel->insert($this->getData());
             if ($createUser) {
-                redirect(URLROOT, 'Registered', 'success');
+                $loginUser = $this->userModel->login($this->getData());
+                    //if user credentials are correct, session is set
+                    if($loginUser){
+                        redirect(URLROOT.'users/profile', 'Registered', 'success');
+                    }
+
             } else {
-                redirect(URLROOT.'/users/register', 'Something went wrong, please try again', 'error');
+                redirect(URLROOT.'users/register', 'Something went wrong, please try again', 'error');
             }
         } else {
             $this->view('auth/register');
@@ -28,12 +33,12 @@ class UsersController extends Controller
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $createUser = $this->userModel->login($this->getData());
-            if (isset($createUser)) {
-                $_SESSION['user'] = $createUser;                
-                redirect(URLROOT, 'Logged in', 'success');
+            $loginUser = $this->userModel->login($this->getData());
+            //if user credentials are correct, session is set
+            if ($loginUser){
+                redirect(URLROOT.'users/profile', 'Logged in', 'success');
             } else {
-                redirect(URLROOT.'/users/login', 'Your credentials not matched, please try again!', 'error');
+                redirect(URLROOT.'users/login', 'Your credentials not matched, please try again!', 'error');
             }
         } else {
             $this->view('auth/login');
@@ -47,7 +52,11 @@ class UsersController extends Controller
     }
 
     public function profile(){
-        $this->view('auth/dashboard');
+       $apps = $this->userModel->getJobsApplicants();
+        $data = [
+           'apps' =>  $this->userModel->getJobsApplicants()
+        ];
+        $this->view('auth/dashboard', $data);
     }
 
     public function getData()
@@ -60,4 +69,5 @@ class UsersController extends Controller
         $data['password'] = $_POST['password'];
         return $data;
     }
+
 }

@@ -1,7 +1,7 @@
 
 <div class="container">
 <h2 class="page-header">Create Job Listing</h2>
-<form action="store" method="post">
+<form action="<?php echo URLROOT.'jobs/store'; ?>" method="post">
     
     <div class="row flex">
     <div class="form-group">
@@ -49,6 +49,6 @@
 
 <br>
 <br>
-<a href="index.php">Go Back</a>
+<a href="<?php echo URLROOT; ?>">Go Back</a>
 <br><br>
 </div>

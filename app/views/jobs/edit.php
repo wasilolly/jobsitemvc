@@ -5,7 +5,7 @@
                                     echo ucfirst($job->title); 
                                 ?>
     </h2>
-    <form action="update?id=<?php echo $job->id; ?>" method="post">
+    <form action="<?php echo URLROOT.'jobs/update?id='.$job->id; ?>" method="post">
         <div class="row flex">
             <div class="form-group">
                 <label for="title">Job Title</label>
@@ -56,6 +56,6 @@
 
     <br>
     <br>
-    <a href="index.php">Go Back</a>
+    <a href="<?php echo URLROOT; ?>">Go Back</a>
     <br><br>
 </div>

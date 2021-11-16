@@ -1,10 +1,7 @@
-<?php
-
-?>
 <div class="bg-light rounded-3">
     <div class="container-fluid py-5">
-        <h2 class="display-5">Job Search</h2>
-        <form method="GET" action="/jobsite/jobs/index">
+        <h4 class="display-3">Job Search</h4>
+        <form method="GET" action="<?php echo URLROOT; ?>">
             <select name="category" class="form-control" id="form-group">
                 <option value="0">Choose a Category</option>
                 <?php foreach ($data['categories'] as $category) : ?>
@@ -24,7 +21,7 @@
             <div class="col d-flex align-items-start">
                 <div>
                     <h2>
-                        <a href="<?php echo URLROOT.'/jobs/job?id='.$job->id; ?>">
+                        <a href="<?php echo URLROOT.'jobs/job?id='.$job->id; ?>">
                             <?php echo ucfirst($job->title);   ?>
                         </a>
                     </h2>

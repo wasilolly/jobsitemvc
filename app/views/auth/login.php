@@ -1,5 +1,5 @@
 <div class="container">
-  <form action="login" method="post">
+  <form action="<?php echo URLROOT.'users/login'; ?>" method="post">
   <div class="row d-flex justify-content-center align-items-center h-auto">
     <div class="col-xl-6">
       <h1 class="mb-4 text-center">Login</h1>

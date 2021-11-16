@@ -38,11 +38,13 @@ class JobsController extends Controller{
     }
 
     public function store(){
-       $create = $this->job->insert($this->getData());
+        $data = $this->getData();
+        $data['user'] = $_SESSION['user'];
+        $create = $this->job->insert($data);
         if($create){
             redirect(URLROOT,'New Job Listed!','success');
         }else{
-            redirect(URLROOT.'/jobs/create','Something went wrong!','error');
+            redirect(URLROOT.'jobs/create','Something went wrong!','error');
         }  
     }
     
@@ -76,7 +78,7 @@ class JobsController extends Controller{
         $jobId = $_GET['id'];
         $this->job->update($jobId,$this->getData());
         $_SESSION['job'] = $this->job->getJob($_GET['id']);
-        redirect(URLROOT.'/jobs/job','Job Updated!','success');
+        redirect(URLROOT.'jobs/job','Job Updated!','success');
     }
 
     public function destroy(){

@@ -38,8 +38,8 @@
 
 <!--Action Buttons-->
 <div class="well">
-    <a href="<?php echo URLROOT . '/jobs/edit?id=' . $job->id; ?>" class="btn btn-success">Edit</a>
-    <form action="<?php echo URLROOT . '/jobs/destroy' ?>" method="post" style="display: inline;">
+    <a href="<?php echo URLROOT . 'jobs/edit?id=' . $job->id; ?>" class="btn btn-success">Edit</a>
+    <form action="<?php echo URLROOT . 'jobs/destroy' ?>" method="post" style="display: inline;">
         <input type="hidden" name="del_id" value="<?php echo $job->id; ?>">
         <input type="submit" name="submit" class="btn btn-danger" value="delete">
     </form>
@@ -54,7 +54,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo URLROOT . '/jobs/apply'; ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo URLROOT . 'jobs/apply'; ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $job->id; ?>">
                     <div class="mb-3">
                         <label for="name">Name</label>

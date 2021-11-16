@@ -19,6 +19,7 @@ class User{
 
         if($this->db->execute())
         {
+            $this->login($data);
             return true;
         } else{
             return false;
@@ -34,10 +35,27 @@ class User{
         $user = $this->db->single();
         if(isset($user)){
             if(password_verify($data['password'],$user->password)){
-                return $user;
+                $_SESSION['user'] = $user;                
+                return true;
+            }else{
+                return false;
             }
         }
-        return null;
+        return false;
+    }
+
+    public function getJobsApplicants(){
+        $userId = $_SESSION['user']->id;
+        //select all from applications where job_id = job_id from Jobs table where user_id = this user_id
+        $this->db->query("SELECT applications.*, jobs.id AS jobId
+                        FROM applications
+                        INNER JOIN jobs 
+                        ON jobs.id = applications.job_id
+                        WHERE jobs.user_id = $userId
+                        ORDER BY created_at DESC");   
+        $results = $this->db->resultSet();
+        return $results;
+                       
     }
 
 }

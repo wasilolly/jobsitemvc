@@ -1,0 +1,13 @@
+.brand{
+    background-color: rgb(236, 240, 243);
+    border-radius: 1.rem;
+}
+.brand >a >span{
+    font-weight: 800;
+    font-size: xx-large;
+
+}
+
+.noapps{
+   text-align: center;
+}
