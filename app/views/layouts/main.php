@@ -29,11 +29,11 @@
                     <li><a class="dropdown-item" href="<?php echo URLROOT.'users/profile'; ?>">Dashboard</a></li>
                     <li><a class="dropdown-item" href="#scrollspyHeading4">New Listing</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/jobsite/users/logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo URLROOT.'users/logout'; ?>">Logout</a></li>
                     </ul>
                 </li>
                 <?php else: ?>
-                    <li class="nav-item"><a href="/jobsite/users/register" class="nav-link">Register</a></li>
+                    <li class="nav-item"><a href="<?php echo URLROOT.'users/register'; ?>" class="nav-link">Register</a></li>
                     <li class="nav-item"><a href="/jobsite/users/login" class="nav-link">Login</a></li>
                 <?php endif; ?>
             </ul>
@@ -43,7 +43,7 @@
         {{content}}
 
         <footer class="footer pt-3 mt-4 text-muted border-top">
-           <p> &copy; JOBSITE 2021</p>
+           <p> &copy; JOBSITE 2022</p>
         </footer>
     </div>
 </main>

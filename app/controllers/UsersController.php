@@ -7,7 +7,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->model('user');
+        $this->model('User');
         $this->userModel = new User;
     }
 

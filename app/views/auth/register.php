@@ -28,7 +28,7 @@
                 <h6 class="mb-0">password</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input type="password" class="form-control" id="password" name="password" placeholder="password" required/>
+                <input type="password" class="form-control" id="password" name="password" placeholder="password" onkeyup="check()" required/>
               </div>
             </div>
             <hr class="mx-n3">
